@@ -39,6 +39,19 @@ if (isset($_POST["submit"])) {
                 $this->SetY(-15);
                 $this->SetFont('helvetica', 'I', 8);
                 $this->Cell(0, 10, 'Sertipiko ng Kaganapan ng Symposium', 0, 0, 'C');
+
+                $this->SetY(-15);
+                $this->SetFont('times', 'I', 12);
+                $this->Cell(0, 10, 'Signatura ng Guro', 0, 0, 'R');
+                $this->SetLineWidth(0.5);
+                $this->Line($this->GetX(), $this->GetY(), $this->GetX() - 50, $this->GetY());
+
+                $imageX = $this->GetX() - 50;
+                $imageY = $this->GetY() - 10;
+
+                $imageY = $this->GetY() - 15;
+                $this->Image('signiture.png', $imageX, $imageY, 40);
+
             }
         }
 
@@ -98,12 +111,12 @@ if (isset($_POST["submit"])) {
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'delgadoargie04@gmail.com';
-            $mail->Password   = 'prbcpvspdvqvdamf';
+            $mail->Username   = 'ezgamer489@gmail.com';
+            $mail->Password   = 'gooulyzzhsdrmnqb';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
 
-            $mail->setFrom('delgadoargie04@gmail.com', 'Symposium Event');
+            $mail->setFrom('ezgamer489@gmail.com', 'Symposium Event');
             $mail->addAddress($email, $fullName);
 
             $mail->addAttachment($outputPath);
