@@ -62,7 +62,7 @@ if (isset($_POST["submit"])) {
         $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
         $pdf->SetFont('times', 'B', 24);
 
-        // $pdf->Image('./wallpaper.png', 0, 0, 297, 210, 'PNG');
+        $pdf->Image('ribbon.png', 267, 5, 15, 35, 'PNG');
 
         $pdf->Cell(0, 20, 'Sertipiko ng Partisipasyon', 0, 1, 'C');
 
