@@ -200,9 +200,6 @@ if (isset($_POST["submit"])) {
                                                             <td><?php echo $row['email'] ?></td>
                                                             <td>
                                                                 <div class="d-flex" style="gap: 10px; justify-content: center;">
-                                                                    <a href="./editcertificates.php?id=<?php echo $row['id'] ?>" class="btn btn-primary me-3" data-toggle="tooltip" data-placement="top" title="Edit">
-                                                                        <i class="far fa-pen-to-square fs-5"></i>
-                                                                    </a>
                                                                     <a href="./viewcertificates.php?id=<?php echo $row['id'] ?>" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="View">
                                                                         <i class="far fa-eye fs-5"></i>
                                                                     </a>

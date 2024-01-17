@@ -59,19 +59,14 @@ if(isset($_POST['submit'])) {
                         ?>
                         <form action="" method="post" enctype="multipart/form-data">
                             <div class="">
-                                <div class="mb-2">
+                                <div class="mb-2" style="width: 400px">
                                     <div class="form-label">Full Name:</div>
                                     <input type="text" class="form-control" name="fullName" value="<?php echo $row['fullname'] ?>" readonly>
                                 </div>
 
-                                <div class="mb-3">
+                                <div class="mb-3" style="width: 400px">
                                     <div class="form-label">Email:</div>
                                     <input type="text" class="form-control" name="email" value="<?php echo $row['email'] ?>" readonly>
-                                </div>
-
-                                <div class="mb-3">
-                                    <button type="reset" class="btn btn-danger" name="Reset">Reset</button>
-                                    <button type="submit" class="btn btn-success" name="submit">Save</button>
                                 </div>
                             </div>
                         </form>
@@ -94,4 +89,4 @@ if(isset($_POST['submit'])) {
         <script src="./js/sidebarfuntion.js"></script>
         <script src="./js/modalfunction.js"></script>
     </body>
-</html> 
+</html>
