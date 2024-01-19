@@ -36,66 +36,103 @@ if (isset($_POST["submit"])) {
             }
 
             public function Footer() {
-                $this->SetY(-15);
-                $this->SetFont('helvetica', 'I', 8);
-                $this->Cell(0, 10, 'Sertipiko ng Kaganapan ng Symposium', 0, 0, 'C');
-
-                $this->SetY(-15);
-                $this->SetFont('times', 'I', 12);
-                $this->Cell(0, 10, 'Signatura ng Guro', 0, 0, 'R');
-                $this->SetLineWidth(0.5);
-                $this->Line($this->GetX(), $this->GetY(), $this->GetX() - 50, $this->GetY());
-
-                $imageX = $this->GetX() - 50;
-                $imageY = $this->GetY() - 10;
-
-                $imageY = $this->GetY() - 15;
-                $this->Image('signiture.png', $imageX, $imageY, 40);
-
+                $photoWidthBottomRight = 85;
+                $photoHeightBottomRight = 85;
+                $photoXBottomRight = $this->getPageWidth() - $photoWidthBottomRight - 10;
+                $photoYBottomRight = $this->getPageHeight() - $photoHeightBottomRight - 5;
+            
+                $this->Image('designSaGedliRight.png', $photoXBottomRight, $photoYBottomRight, $photoWidthBottomRight, $photoHeightBottomRight);
+            
+                $photoWidthBottomLeft = 85;
+                $photoHeightBottomLeft = 85;
+                $photoXBottomLeft = 10;
+                $photoYBottomLeft = $this->getPageHeight() - $photoHeightBottomLeft - 5;
+            
+                $this->Image('starSaGedliY.png', $photoXBottomLeft, $photoYBottomLeft, $photoWidthBottomLeft, $photoHeightBottomLeft);
             }
         }
 
         $pdf = new SymposiumCertificate('L', 'mm', 'A4', true, 'UTF-8', false);
 
+        $pdf->SetMargins(10, 10, 10);
+
         $pdf->AddPage();
 
-        $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-        $pdf->SetFont('times', 'B', 24);
+        $pdf->SetFillColor(255, 248, 243);
 
-        $pdf->Image('ribbon.png', 267, 5, 15, 35, 'PNG');
+        $pdf->Rect(0, 0, $pdf->getPageWidth(), $pdf->getPageHeight(), 'F');
 
-        $pdf->Cell(0, 20, 'Sertipiko ng Partisipasyon', 0, 1, 'C');
-
-        $pdf->SetFont('times', '', 16);
-
-        $pdf->SetLineWidth(1);
-        $pdf->SetDrawColor(0, 0, 0);
-        
-        $pdf->Rect(5, 5, 287, 200, 'D');
+        $pdf->SetAutoPageBreak(FALSE, PDF_MARGIN_BOTTOM);
 
         $pdf->Cell(0, 10, '', 0, 1, 'C');
 
-        $pdf->SetFont('times', 'BU', 50);
+        $pdf->SetFont('Alice', '', 13);
+
+        $pdf->Cell(0, 15, 'IGINAWAD ITONG', 0, 1, 'C');
+
+        $pdf->SetFont('lemon', '', 50);
+
+        $pdf->Cell(0, 20, 'Sertipiko ng Pagdalo', 0, 1, 'C');
+
+        $pdf->SetFont('Alice', '', 12);
+
+        $pdf->Cell(0, 10, 'Kay', 0, 1, 'C');
+
+        $pdf->Cell(0, 10, '', 0, 1, 'C');
+
+        $pdf->SetFont('Angelina', '', 75);
 
         $pdf->Cell(0, 20, $fullName, 0, 1, 'C');
 
         $pdf->Cell(0, 10, '', 0, 1, 'C');
 
-        $pdf->SetFont('times', '', 16);
+        $pdf->SetTextColor(0, 0, 0);
 
-        $pdf->MultiCell(0, 10, "Bilang pagpaparangal sa aktibong partisipasyon ni [$fullName] sa Symposium ng Pangkat Villanueva & Co. noong ika-labing anim ng Enero 2024, iginawad sa kanya ang isang sertipiko ng pagdalo. Ang sertipikadong ito ay naglalaman ng opisyal na rekord ng kanyang pagtanggap, na nagpapatunay sa kanyang mahalagang papel sa nasabing aktibidad. Ito'y isang malinaw na indikasyon ng kanyang hangaring mapabuti ang sarili sa pamamagitan ng pagsanay at pakikipag-ugnayan sa mga kapwa propesyonal.", 0, 'L');
+        $pdf->SetFont('InstrumentSerif', 'I', 15);
 
-        $pdf->Cell(0, 10, '', 0, 1, 'C');
+        $pdf->SetXY(0, $pdf->getPageHeight() / 2);
 
-        $pdf->MultiCell(0, 10, 'Pinapaabot ng pangkat ang kanilang pasasalamat sa iyong pagdalo.', 0, 'L');
+        $pdf->MultiCell(0, 10, '
+                Sa pagpapakita ng masigasig na pagdalo sa Symposium na pinamagatan
+                Tuklasin ang Mundo ng AI (Artificial Intelligence). Iginawad ngayong Ika-18 ng Enero taong 2024.
+                ', 0, 'C');
 
-        $pdf->Cell(0, 10, '', 0, 1, 'C');
-        $pdf->Cell(0, 10, '', 0, 1, 'C');
+        $pdf->SetFont('Alice', 'I', 16);
 
-        $pdf->SetFont('times', 'I', 16);
+        $signatureWidth = 24;
+        $signatureHeight = 24;
+        
+        $signatureX = ($pdf->getPageWidth() - $signatureWidth) / 2;
+        $signatureY = $pdf->getPageHeight() - 85;
+        
+        // Adjust the position for the image
+        $imageOffset = 35;
+        $imageY = $signatureY + $imageOffset;
+        
+        $pdf->Image('monedaSigniture.png', $signatureX, $imageY, $signatureWidth, $signatureHeight);
+        
+        $textY = $imageY + $signatureHeight - 10;
+        $pdf->SetXY($signatureX, $textY);
+        $pdf->SetFont('Alice', 'U', 12);
+        $pdf->Cell($signatureWidth, 10, 'Angelica D. Moneda', 0, 1, 'C');
+        
+        $pdf->SetXY($signatureX, $textY + 5);
+        $pdf->SetFont('Alice', '', 12);
+        $pdf->Cell($signatureWidth, 10, 'Lider ng Grupo', 0, 1, 'C');
 
-        $pdf->Cell(0, 10, 'Lubos na gumagalang,', 0, 1, 'L');
-        $pdf->Cell(0, 10, 'Argie P. Delgado', 0, 1, 'L');
+        $photoWidthTopLeft = 85;
+        $photoHeightTopLeft = 85;
+        $photoXTopLeft = 10;
+        $photoYTopLeft = 5;
+
+        $pdf->Image('designSaGedliLeft.png', $photoXTopLeft, $photoYTopLeft, $photoWidthTopLeft, $photoHeightTopLeft);
+
+        $photoWidthTopRight = 85;
+        $photoHeightTopRight = 85;
+        $photoXTopRight = $pdf->GetPageWidth() - $photoWidthTopRight - 10;
+        $photoYTopRight = 5;
+
+        $pdf->Image('starSaGedliX.png', $photoXTopRight, $photoYTopRight, $photoWidthTopRight, $photoHeightTopRight);
 
         $outputPath = 'Symposium Certificates/' . $fullName . '_symposium_certificate.pdf';
         $pdf->Output(__DIR__ . '/' . $outputPath, 'F');
@@ -104,26 +141,24 @@ if (isset($_POST["submit"])) {
         $mail = new PHPMailer(true);
 
         try {
-            // Debuggin State
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
-            // Server settings
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'ezgamer489@gmail.com';
-            $mail->Password   = 'gooulyzzhsdrmnqb';
+            $mail->Username   = 'symposiumevent4@gmail.com';
+            $mail->Password   = 'shjkgtsluwpfoxqz';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
 
-            $mail->setFrom('ezgamer489@gmail.com', 'Symposium Event');
+            $mail->setFrom('thomasgarcia041206@gmail.com', 'Symposium Event');
             $mail->addAddress($email, $fullName);
 
             $mail->addAttachment($outputPath);
 
             $mail->isHTML(true);
             $mail->Subject = 'Symposium Certificate';
-            $mail->Body    = 'Dear ' . $fullName . ',<br><br>Congratulations! You have successfully attended the Symposium. Please find your certificate attached.<br><br>Best regards,<br>Villuaneuva & Co';
+            $mail->Body    = 'Dear ' . $fullName . ',<br><br>Congratulations! You have successfully attended the Symposium. Please find your certificate attached.<br><br>Best regards,<br>Moneda Group';
 
             $mail->send();
 
@@ -203,7 +238,7 @@ if (isset($_POST["submit"])) {
                                                                     <a href="./viewcertificates.php?id=<?php echo $row['id'] ?>" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="View">
                                                                         <i class="far fa-eye fs-5"></i>
                                                                     </a>
-                                                                    <a href="./delete_row.php?id=<?php echo $row['id'] ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete">
+                                                                    <a href="./delete_ro.php?id=<?php echo $row['id'] ?>" class="btn btn-danger" data-toggle="tooltip" data-placement="top" title="Delete">
                                                                         <i class="far fa-trash-can fs-5"></i>
                                                                     </a>
                                                                     <script>
