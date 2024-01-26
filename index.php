@@ -41,14 +41,14 @@ if (isset($_POST["submit"])) {
                 $photoXBottomRight = $this->getPageWidth() - $photoWidthBottomRight - 10;
                 $photoYBottomRight = $this->getPageHeight() - $photoHeightBottomRight - 5;
             
-                $this->Image('designSaGedliRight.png', $photoXBottomRight, $photoYBottomRight, $photoWidthBottomRight, $photoHeightBottomRight);
+                $this->Image('./img/designSaGedliRight.png', $photoXBottomRight, $photoYBottomRight, $photoWidthBottomRight, $photoHeightBottomRight);
             
                 $photoWidthBottomLeft = 85;
                 $photoHeightBottomLeft = 85;
                 $photoXBottomLeft = 10;
                 $photoYBottomLeft = $this->getPageHeight() - $photoHeightBottomLeft - 5;
             
-                $this->Image('starSaGedliY.png', $photoXBottomLeft, $photoYBottomLeft, $photoWidthBottomLeft, $photoHeightBottomLeft);
+                $this->Image('./img/starSaGedliY.png', $photoXBottomLeft, $photoYBottomLeft, $photoWidthBottomLeft, $photoHeightBottomLeft);
             }
         }
 
@@ -109,7 +109,7 @@ if (isset($_POST["submit"])) {
         $imageOffset = 35;
         $imageY = $signatureY + $imageOffset;
         
-        $pdf->Image('monedaSigniture.png', $signatureX, $imageY, $signatureWidth, $signatureHeight);
+        $pdf->Image('./img/monedaSigniture.png', $signatureX, $imageY, $signatureWidth, $signatureHeight);
         
         $textY = $imageY + $signatureHeight - 10;
         $pdf->SetXY($signatureX, $textY);
@@ -125,14 +125,14 @@ if (isset($_POST["submit"])) {
         $photoXTopLeft = 10;
         $photoYTopLeft = 5;
 
-        $pdf->Image('designSaGedliLeft.png', $photoXTopLeft, $photoYTopLeft, $photoWidthTopLeft, $photoHeightTopLeft);
+        $pdf->Image('./img/designSaGedliLeft.png', $photoXTopLeft, $photoYTopLeft, $photoWidthTopLeft, $photoHeightTopLeft);
 
         $photoWidthTopRight = 85;
         $photoHeightTopRight = 85;
         $photoXTopRight = $pdf->GetPageWidth() - $photoWidthTopRight - 10;
         $photoYTopRight = 5;
 
-        $pdf->Image('starSaGedliX.png', $photoXTopRight, $photoYTopRight, $photoWidthTopRight, $photoHeightTopRight);
+        $pdf->Image('./img/starSaGedliX.png', $photoXTopRight, $photoYTopRight, $photoWidthTopRight, $photoHeightTopRight);
 
         $outputPath = 'Symposium Certificates/' . $fullName . '_symposium_certificate.pdf';
         $pdf->Output(__DIR__ . '/' . $outputPath, 'F');
