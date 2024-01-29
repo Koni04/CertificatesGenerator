@@ -68,11 +68,11 @@ if (isset($_POST["submit"])) {
 
         $pdf->SetFont('Alice', '', 13);
 
-        $pdf->Cell(0, 15, 'IGINAWAD ITONG', 0, 1, 'C');
+        $pdf->Cell(0, 15, 'IT WAS AWARDED', 0, 1, 'C');
 
         $pdf->SetFont('lemon', '', 50);
 
-        $pdf->Cell(0, 20, 'Sertipiko ng Pagdalo', 0, 1, 'C');
+        $pdf->Cell(0, 20, 'Certificate of Attendance', 0, 1, 'C');
 
         $pdf->SetFont('Alice', '', 12);
 
@@ -93,8 +93,8 @@ if (isset($_POST["submit"])) {
         $pdf->SetXY(0, $pdf->getPageHeight() / 2);
 
         $pdf->MultiCell(0, 10, '
-                Sa pagpapakita ng masigasig na pagdalo sa Symposium na pinamagatan
-                Tuklasin ang Mundo ng AI (Artificial Intelligence). Iginawad ngayong Ika-18 ng Enero taong 2024.
+                In showing enthusiastic attendance at the Symposium entitled
+                Discover the World of AI (Artificial Intelligence). Awarded this January 18th year 2024.
                 ', 0, 'C');
 
         $pdf->SetFont('Alice', 'I', 16);
@@ -114,11 +114,11 @@ if (isset($_POST["submit"])) {
         $textY = $imageY + $signatureHeight - 10;
         $pdf->SetXY($signatureX, $textY);
         $pdf->SetFont('Alice', 'U', 12);
-        $pdf->Cell($signatureWidth, 10, 'Angelica D. Moneda', 0, 1, 'C');
+        $pdf->Cell($signatureWidth, 10, 'Signiture', 0, 1, 'C');
         
         $pdf->SetXY($signatureX, $textY + 5);
         $pdf->SetFont('Alice', '', 12);
-        $pdf->Cell($signatureWidth, 10, 'Lider ng Grupo', 0, 1, 'C');
+        $pdf->Cell($signatureWidth, 10, 'Footer Content', 0, 1, 'C');
 
         $photoWidthTopLeft = 85;
         $photoHeightTopLeft = 85;
@@ -134,7 +134,7 @@ if (isset($_POST["submit"])) {
 
         $pdf->Image('./img/starSaGedliX.png', $photoXTopRight, $photoYTopRight, $photoWidthTopRight, $photoHeightTopRight);
 
-        $outputPath = 'Symposium Certificates/' . $fullName . '_symposium_certificate.pdf';
+        $outputPath = 'Certificates/' . $fullName . '_certificate.pdf';
         $pdf->Output(__DIR__ . '/' . $outputPath, 'F');
 
         // 2. Send the Email with Attachment
@@ -146,19 +146,19 @@ if (isset($_POST["submit"])) {
             $mail->isSMTP();
             $mail->Host       = 'smtp.gmail.com';
             $mail->SMTPAuth   = true;
-            $mail->Username   = 'symposiumevent4@gmail.com';
-            $mail->Password   = 'shjkgtsluwpfoxqz';
+            $mail->Username   = 'yourgmail@gmail.com';
+            $mail->Password   = 'yourpassword';
             $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
             $mail->Port       = 587;
 
-            $mail->setFrom('thomasgarcia041206@gmail.com', 'Symposium Event');
+            $mail->setFrom('your@gmail.com', 'Templates  Event');
             $mail->addAddress($email, $fullName);
 
             $mail->addAttachment($outputPath);
 
             $mail->isHTML(true);
-            $mail->Subject = 'Symposium Certificate';
-            $mail->Body    = 'Dear ' . $fullName . ',<br><br>Congratulations! You have successfully attended the Symposium. Please find your certificate attached.<br><br>Best regards,<br>Moneda Group';
+            $mail->Subject = 'Certificate';
+            $mail->Body    = 'Dear ' . $fullName . ',<br><br>Congratulations! You have successfully attended the Event. Please find your certificate attached.<br><br>Best regards,<br> Group';
 
             $mail->send();
 
